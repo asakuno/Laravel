@@ -20,7 +20,7 @@ class RegisterController extends Controller
 
         $user = $this->registerUseCase->execute($request->getRegisterParams());
 
-        //$user->sendEmailVerificationNotification();
+        $user->sendEmailVerificationNotification();
 
         return response()->json([
             'message' => 'ユーザーの作成に成功しました!',

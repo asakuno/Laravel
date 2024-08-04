@@ -15,4 +15,18 @@ interface UserRepository
      * @return User
      */
     public function store(RegisterUserData $registerUserData): User;
+
+    /**
+     * @param int $user_id
+     * @return User
+     */
+    public function findOrFail(int $user_id): User;
+
+    /**
+     * emailからUser取得
+     *
+     * @param string $email
+     * @return User
+     */
+    public function fetchUserByEmail(string $email): User;
 }

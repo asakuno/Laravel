@@ -16,4 +16,20 @@ class UserRepositoryImpl implements UserRepository
     {
         return User::create($registerUserData->toArray());
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function findOrFail(int $user_id): User
+    {
+        return User::findOrFail($user_id);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function fetchUserByEmail(string $email): User
+    {
+        return User::where('email', '=', $email)->first;
+    }
 }
