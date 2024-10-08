@@ -4,13 +4,10 @@ declare(strict_types=1);
 namespace App\Http\Requests\Auth;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\DataTransferObjects\Auth\RegisterUserData;
-use Illuminate\Support\Facades\Hash;
+use App\DataTransferObjects\Auth\LoginData;
 
-class RegisterRequest extends FormRequest
+class LoginRequest extends FormRequest
 {
-    private const DEFAULT_ACCOUNT_TYPE = 1;
-
     /**
      * Determine if the user is authorized to make this request.
      */
@@ -27,32 +24,27 @@ class RegisterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => [
-                'required',
-                'string',
-                'min:4',
-            ],
             'email' => [
                 'required',
-                'string'
+                'string',
             ],
             'password' => [
                 'required',
-                'string'
-            ],
+                'string',
+            ]
         ];
     }
 
+
     /**
-     * @return RegisterUserData
+     *
+     * @return LoginData
      */
-    public function getRegisterParams(): RegisterUserData
+    public function getLoginData(): LoginData
     {
-        return RegisterUserData::from([
-            'name' => $this->input('name'),
+        return LoginData::from([
             'email' => $this->input('email'),
-            'password' => Hash::make($this->input('password')),
-            'account_type' => self::DEFAULT_ACCOUNT_TYPE,
+            'password' => $this->input('password'),
         ]);
     }
 }

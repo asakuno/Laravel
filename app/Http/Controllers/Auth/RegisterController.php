@@ -17,10 +17,9 @@ class RegisterController extends Controller
 
     public function __invoke(RegisterRequest $request): JsonResponse
     {
-
         $user = $this->registerUseCase->execute($request->getRegisterParams());
 
-        //$user->sendEmailVerificationNotification();
+        $user->sendEmailVerificationNotification();
 
         return response()->json([
             'message' => 'ユーザーの作成に成功しました!',
