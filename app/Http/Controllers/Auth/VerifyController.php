@@ -31,7 +31,7 @@ class VerifyController extends Controller
 
         return response()->json([
             'message' => 'verify success',
-            200
+            'status_code' => 200,
         ]);
     }
 

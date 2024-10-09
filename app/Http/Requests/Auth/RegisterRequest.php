@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Hash;
 
 class RegisterRequest extends FormRequest
 {
+    private const DEFAULT_ACCOUNT_TYPE = 1;
+
     /**
      * Determine if the user is authorized to make this request.
      */
@@ -50,6 +52,7 @@ class RegisterRequest extends FormRequest
             'name' => $this->input('name'),
             'email' => $this->input('email'),
             'password' => Hash::make($this->input('password')),
+            'account_type' => self::DEFAULT_ACCOUNT_TYPE,
         ]);
     }
 }

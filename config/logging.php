@@ -62,7 +62,7 @@ return [
             'driver' => 'single',
             'path' => storage_path('logs/laravel.log'),
             'level' => env('LOG_LEVEL', 'debug'),
-            'replace_placeholders' => true,
+            'ignore_exceptions' => false,
         ],
 
         'daily' => [
@@ -70,7 +70,7 @@ return [
             'path' => storage_path('logs/laravel.log'),
             'level' => env('LOG_LEVEL', 'debug'),
             'days' => env('LOG_DAILY_DAYS', 14),
-            'replace_placeholders' => true,
+            'formatter' => App\Logging\CustomLogging::class,
         ],
 
         'slack' => [
